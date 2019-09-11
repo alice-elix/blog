@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Profil de {{ profilTrouve.getUsername() }} !{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Chaaaalut {{ profilTrouve.getUsername() }}! ✅</h1>
+    <h2>Rôle sur le site : {{ profilTrouve.getRoles() }}</h2>
+    <h2>Email enregistré : {{ profilTrouve.getEmail() }}</h2>
+
+    {#<h3><em>Par : {{ profilTrouve.getAuteur() }}</em></h3>#}
+	{#<img src="/uploads/{{ profilTrouve.getImg() }}" alt="{{ profilTrouve.getAuteur() }}, {{ profilTrouve.getTitre()  }}" title="{{ profilTrouve.getAuteur() }} {{ profilTrouve.getTitre() }}">#}
+    {#<p><em>Catégorie : {{ profilTrouve.getCategorie() }}</em></p>#}
+    {#<p>{{ profilTrouve.getContenu() }}</p>#}
+    {#<div >
+		<p> Date de publication : {{ profilTrouve.getDatePublication()|date("d/m/Y") }} </p>
+		{% if dateModif is not empty %}
+		   <p><em>Date de la dernière modification : {{ profilTrouve.getDateModification()|date("d/m/Y") }} </em></p> 
+		{% endif %}
+	</div>#}
+			
+	{#<a class="btn btn-secondary" href="{{ path('ed_profil', {id : profilTrouve.getId()}) }}" role="button">Modifier</a>#}
+	
+
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des articles !{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Chaaaalut {{ mon_prenom }}! ✅</h1>
+
+    <table>
+		<thead>
+			<tr>
+				<th>Auteur·trice</th>
+				<th>Titre</th>
+				<th>Catégorie</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for articleTrouve in articlesTrouves %}
+			<tr>
+				<td>{{ articleTrouve.getAuteur() }} </td>
+				<td>{{ articleTrouve.getTitre() }}</td>
+				<td>{{ articleTrouve.getCategorie() }}</td>
+				<td><a class="btn btn-secondary" href="{{ path('ed_article', {id : articleTrouve.getId()}) }}" role="button">Modifier</a></td>
+				<td><a class="btn btn-secondary" href="{{ path('view_article', {id : articleTrouve.getId()}) }}" role="button">Afficher</a></td>
+			</tr>
+			{%  endfor %}	
+		</tbody>
+
+	</table>
+</div>
+{% endblock %}

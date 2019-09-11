@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lecture de l'article {{ articleTrouve.getTitre() }} !{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Chaaaalut {{ articleTrouve.getAuteur() }}! ✅</h1>
+    <h2>{{ articleTrouve.getTitre() }}</h2>
+    <h3><em>Par : {{ articleTrouve.getAuteur() }}</em></h3>
+	<img src="/uploads/{{ articleTrouve.getImg() }}" alt="{{ articleTrouve.getAuteur() }}, {{ articleTrouve.getTitre()  }}" title="{{ articleTrouve.getAuteur() }} {{ articleTrouve.getTitre() }}">
+    <p><em>Catégorie : {{ articleTrouve.getCategorie() }}</em></p>
+    <p>{{ articleTrouve.getContenu() }}</p>
+    <div >
+		<p> Date de publication : {{ articleTrouve.getDatePublication()|date("d/m/Y") }} </p>
+		{% if dateModif is not empty %}
+		   <p><em>Date de la dernière modification : {{ articleTrouve.getDateModification()|date("d/m/Y") }} </em></p> 
+		{% endif %}
+	</div>
+			
+	<a class="btn btn-secondary" href="{{ path('ed_article', {id : articleTrouve.getId()}) }}" role="button">Modifier</a>
+	<a class="btn btn-secondary" href="{{ path('list_article')}}" role="button">Retour à la liste</a>
+
+</div>
+{% endblock %}

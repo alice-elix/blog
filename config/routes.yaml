@@ -1,0 +1,58 @@
+# racine projet SF :  http://localhost/blog/public/
+# http://localhost/blog/public/add-new-vehicle
+
+# nom_de_route_doit_etre_unique
+#  path: /url-de-ma-page
+#  controller: LaMethodeQuiAppelleMaPage
+
+# add_car:
+#     path: /add-new-vehicle
+#     controller: App\Controller\DefaultController::addCar
+
+index:
+   path: /
+   controller: App\Controller\DefaultController::index
+
+add_article:
+    path: /ajouter-un-article
+    controller: App\Controller\ArticleController::addArticle
+
+ed_article:
+  path: /modifier-un-article/{id} #url d'accès à ma page. Le paramètre {id} est un paramètre get
+  controller: App\Controller\ArticleController::editArticle
+  requirements:
+    id: '\d+' #veut dire que le paramètre id n'acceptera que des chiffres 
+
+list_article:
+  path: /liste-des-articles
+  controller: App\Controller\ArticleController::listArticle
+
+view_article:
+  path: /afficher-un-article/{id}
+  controller: App\Controller\ArticleController::viewArticle
+  requirements:
+    id: '\d+' #veut dire que le paramètre id n'acceptera que des chiffres 
+
+del_article:
+  path: /effacer-un-article/{id}
+  controller: App\Controller\ArticleController::deleteArticle
+  requirements:
+    id: '\d+' #veut dire que le paramètre id n'acceptera que des chiffres 
+
+add_user:
+  path: /ajouter-un-utilisateur
+  controller: App\Controller\UsersController::addUser
+
+profil:
+  path: /profil/{id}
+  controller: App\Controller\UsersController::profil
+  requirements:
+    id: '\d+' #veut dire que le paramètre id n'acceptera que des chiffres 
+
+ed_user:
+  path: /modifier-un-utilisateur/{id}
+  controller: App\Controller\UsersController::editUser
+  requirements:
+    id: '\d+' #veut dire que le paramètre id n'acceptera que des chiffres
+
+

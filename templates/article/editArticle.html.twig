@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de l'article {{ articleTrouve.getTitre() }}{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Chaaaalut {{ articleTrouve.getAuteur }}! {{ avatar }}</h1>
+
+    {% if errors is not empty %}
+		<div class="alert alert-danger">{{errors|raw}}</div>
+	{% elseif success == true %}
+		<div class="alert alert-success">Votre article a bien été modifié</div>
+	{% endif %}
+    
+    <form method="post" enctype="multipart/form-data">
+    	<h2>Modifier l'article "{{ articleTrouve.getTitre() }}" </h2>
+		<div class="form-group">
+			<label for="auteur">Auteur·trice</label>
+			<input type="text" id="auteur" name="auteur" class="form-control" value="{{ donnees_saisies.titre ?? articleTrouve.getAuteur }}">
+		</div>
+		<div class="form-group">
+			<label for="titre">Titre</label>
+			<input type="text" id="titre" name="titre" class="form-control" value="{{ articleTrouve.getTitre() }}">
+		</div>
+		<div class="form-group">
+			<label for="categorie">Catégorie</label>
+			<input type="text" id="categorie" name="categorie" class="form-control" value="{{ articleTrouve.getCategorie() }}">
+		</div>
+
+		<div class="form-group">
+			<label for="contenu">Contenu</label>
+			<input type="text" id="contenu" name="contenu" class="form-control" value="{{ donnees_saisies.contenu ?? articleTrouve.getContenu() }}">
+		</div>
+		<div class="form-group">
+			<p> Date de publication : {{ articleTrouve.getDatePublication()|date("d/m/Y") }} </p>
+			{% if dateModif is not empty %}
+			   <p><em>Date de la dernière modification : {{ articleTrouve.getDateModification()|date("d/m/Y") }} </em></p> 
+			{% endif %}
+			
+		</div>
+		<br>
+		<h2><b>Modifier l'image</b> <em>(optionnel)</em> </h2>
+		<div class="form-group">		
+			<div>
+				<p>
+					<em>Image actuelle</em>
+					<img src="/uploads/{{ articleTrouve.getImg() }}">
+				</p>
+			</div>
+			<label for="img">Pour modifier l'image : </label>
+			<input type="hidden" name="MAX_FILE_SIZE" value="{{maxSizeFile}}"> <!--  permet de limiter l'envoi de fichier à 3 Mo -->
+			<input type="file" name="img" id="img" accept="image/*"> 
+		</div>
+		<div class="text-center">
+			<a class="btn btn-outline-secondary" href="{{ path('view_article', {id : articleTrouve.getId()}) }}" role="button">Afficher</a>
+			<input type="submit" value="Envoyer" class="btn btn-outline-secondary">				
+		</div>
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un article{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! {{avatar}}</h1>
+
+    {% if errors is not empty %}
+		<div class="alert alert-danger">{{errors|raw}}</div>
+	{% elseif success == true %}
+		<div class="alert alert-success">Votre article a bien été envoyé</div>
+	{% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+		<div class="form-group">
+			<label for="auteur">Auteur·trice</label>
+			<input type="text" id="auteur" name="auteur" class="form-control" value="{{ donnees_saisies.auteur ?? '' }}">
+		</div>
+		<div class="form-group">
+			<label for="titre">Titre</label>
+			<input type="text" id="titre" name="titre" class="form-control" value="{{ donnees_saisies.titre ?? '' }}">
+		</div>
+		<div class="form-group">
+			<label for="categorie">Catégorie</label>
+			<input type="text" id="categorie" name="categorie" class="form-control" value="{{ donnees_saisies.categorie ?? '' }}">
+		</div>
+
+		<div class="form-group">
+			<label for="contenu">Contenu</label>
+			<input type="text" id="contenu" name="contenu" class="form-control" value="{{ donnees_saisies.contenu ?? '' }}">
+		</div>
+		<br><br>
+		<div class="form-group">
+			<label for="img">Image</label>
+			<input type="hidden" name="MAX_FILE_SIZE" value="{{maxSizeFile}}"> <!--  permet de limiter l'envoi de fichier à 3 Mo -->
+			<input type="file" name="img" id="img" accept="image/*"> 
+		</div>
+		
+		<div class="text-center">
+			<input type="submit" value="Envoyer" class="btn btn-outline-primary">				
+		</div>
+	</form>
+
+</div>
+{% endblock %}

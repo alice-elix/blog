@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'enregistrer{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! {{avatar}}</h1>
+
+    {% if errors is not empty %}
+		<div class="alert alert-danger">{{errors|raw}}</div>
+	{% elseif success == true %}
+		<div class="alert alert-success">Votre compte a bien été créé</div>
+	{% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+		<div class="form-group">
+			<label for="name">Nom</label>
+			<input type="text" id="name" name="name" class="form-control" value="{{ donnees_saisies.name ?? '' }}">
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input type="email" id="email" name="email" class="form-control" value="{{ donnees_saisies.email ?? '' }}">
+		</div>
+		<div class="form-group">
+			<label for="pwd">Password</label>
+			<input type="password" id="pwd" name="pwd" class="form-control" >
+		</div>
+		<div class="form-group">
+			<label for="conf-pwd">Confirmation Password</label>
+			<input type="password" id="conf-pwd" name="conf-pwd" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="role">Role</label>
+			<input type="text" id="role" name="role" class="form-control" value="{{ donnees_saisies.role ?? '' }}">
+		</div>
+		<div class="text-center">
+			<input type="submit" value="Enregistrer" class="btn btn-outline-primary">				
+		</div>
+	</form>
+
+</div>
+{% endblock %}
